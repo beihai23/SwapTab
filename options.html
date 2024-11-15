@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SWapTab 设置</title>
+  <style>
+    body {
+      padding: 20px;
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #333;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .shortcut-section {
+      margin: 20px 0;
+    }
+    .shortcut-info {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .current-shortcut-container {
+      background: #f0f9f1;
+      border: 2px solid #81c995;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .current-shortcut-label {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .current-shortcut {
+      display: inline-block;
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid #81c995;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2d2d2d;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .shortcut-key {
+      display: inline-block;
+      padding: 0 2px;
+    }
+    .shortcut-plus {
+      display: inline-block;
+      padding: 0 4px;
+      color: #999;
+      font-weight: normal;
+    }
+    .button {
+      display: inline-block;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background: #81c995;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-size: 14px;
+    }
+    .button:hover {
+      background: #6db583;
+    }
+    .note {
+      margin-top: 20px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #666;
+    }
+    .steps {
+      margin: 15px 0;
+      padding-left: 20px;
+      color: #666;
+    }
+    .steps li {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SWapTab 设置</h1>
+    
+    <div class="shortcut-section">
+      <h2>快捷键设置</h2>
+      <div class="current-shortcut-container">
+        <div class="current-shortcut-label">当前快捷键：</div>
+        <span class="current-shortcut" id="currentShortcut">正在加载...</span>
+      </div>
+      <div class="shortcut-info">
+        <p>要修改快捷键，请按照以下步骤操作：</p>
+        <ol class="steps">
+          <li>点击下方按钮打开 Chrome 快捷键设置页面</li>
+          <li>找到 "SWapTab" 的 "切换到上一个标签页" 设置项</li>
+          <li>点击输入框并设置新的快捷键组合</li>
+        </ol>
+        <a href="chrome://extensions/shortcuts" class="button" id="shortcutsButton">打开快捷键设置</a>
+      </div>
+      
+      <div class="note">
+        <p>注意：由于 Chrome 安全限制，快捷键只能在 Chrome 的扩展快捷键设置页面中修改。</p>
+        <p>如果上面的按钮无法打开设置页面，请手动在新标签页中输入：chrome://extensions/shortcuts</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html> 

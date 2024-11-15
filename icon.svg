@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke-width="12" fill="none" stroke-linejoin="round" stroke-linecap="round">
+        <!-- 后面的标签页（非活跃） -->
+        <path d="M25,45 L25,85 L80,85 L80,52 L60,52 L53,45 Z"
+              stroke="#9AA0A6"/>
+        
+        <!-- 前面的标签页（活跃） -->
+        <path d="M48,38 L48,78 L103,78 L103,45 L83,45 L76,38 Z"
+              stroke="#81c995"/>
+    </g>
+</svg> 

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "SWapTab",
+  "version": "1.0",
+  "description": "快速切换当前和上一次浏览的标签页",
+  "permissions": [
+    "tabs",
+    "storage",
+    "commands"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "commands": {
+    "switch-tab": {
+      "suggested_key": {
+        "default": "Alt+Q"
+      },
+      "description": "切换到上一个标签页"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+} 

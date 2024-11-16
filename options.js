@@ -1,33 +1,29 @@
-// 当前编辑状态
-let isEditing = false;
-let currentShortcut = '';
+// 等待DOM加载完成
+document.addEventListener('DOMContentLoaded', () => {
+  const editButton = document.getElementById('editButton');
+  const shortcutElement = document.getElementById('shortcut');
+  let isEditing = false;
 
-// DOM 元素
-const shortcutBox = document.getElementById('shortcutBox');
-const editButton = document.getElementById('editButton');
-const resetButton = document.getElementById('resetButton');
-const errorMessage = document.getElementById('errorMessage');
-const conflictModal = document.getElementById('conflictModal');
-const conflictDetails = document.getElementById('conflictDetails');
-const cancelButton = document.getElementById('cancelButton');
-const replaceButton = document.getElementById('replaceButton');
-
-// 初始化
-document.addEventListener('DOMContentLoaded', async () => {
-  // 获取当前快捷键
-  const commands = await chrome.commands.getAll();
-  const switchCommand = commands.find(cmd => cmd.name === 'switch-tab');
-  const currentShortcut = document.getElementById('currentShortcut');
-  
-  if (switchCommand && switchCommand.shortcut) {
-    // 拆分快捷键并添加样式
-    const keys = switchCommand.shortcut.split('+');
-    currentShortcut.innerHTML = keys
-      .map(key => `<span class="shortcut-key">${key.trim()}</span>`)
-      .join('<span class="shortcut-plus">+</span>');
-  } else {
-    currentShortcut.textContent = '未设置';
+  function startEditing() {
+    isEditing = true;
+    editButton.textContent = '完成';
+    shortcutElement.classList.add('editing');
   }
+
+  function stopEditing() {
+    isEditing = false;
+    editButton.textContent = '编辑';
+    shortcutElement.classList.remove('editing');
+  }
+
+  // 编辑按钮点击事件
+  editButton.addEventListener('click', () => {
+    if (isEditing) {
+      stopEditing();
+    } else {
+      startEditing();
+    }
+  });
 });
 
 // 处理快捷键设置按钮点击
@@ -42,17 +38,8 @@ document.getElementById('shortcutsButton').addEventListener('click', (e) => {
   });
 });
 
-// 编辑按钮点击事件
-editButton.addEventListener('click', () => {
-  if (isEditing) {
-    stopEditing();
-  } else {
-    startEditing();
-  }
-});
-
 // 重置按钮点击事件
-resetButton.addEventListener('click', async () => {
+document.getElementById('resetButton').addEventListener('click', async () => {
   try {
     await chrome.commands.reset('switch-tab');
     const commands = await chrome.commands.getAll();
@@ -64,23 +51,6 @@ resetButton.addEventListener('click', async () => {
     errorMessage.textContent = '重置失败：' + error.message;
   }
 });
-
-// 开始编辑
-function startEditing() {
-  isEditing = true;
-  shortcutBox.classList.add('editing');
-  editButton.textContent = '保存';
-  shortcutBox.textContent = '请按下新的快捷键组合';
-  shortcutBox.focus();
-}
-
-// 停止编辑
-function stopEditing() {
-  isEditing = false;
-  shortcutBox.classList.remove('editing');
-  editButton.textContent = '修改';
-  shortcutBox.textContent = currentShortcut || '未设置';
-}
 
 // 处理快捷键输入
 shortcutBox.addEventListener('keydown', async (e) => {
